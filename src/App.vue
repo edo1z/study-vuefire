@@ -1,7 +1,7 @@
 <template>
-  <div id="app">
-    hoge
-  </div>
+  <v-app>
+    <router-view></router-view>
+  </v-app>
 </template>
 
 <script>
