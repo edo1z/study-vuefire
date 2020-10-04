@@ -1,19 +1,21 @@
+import {db} from '@/api/firebase'
+
 export default {
   namespaced: true,
   state: {
-    items: [
-      {
-        id: 1,
-        name: 'car',
-      },
-      {
-        id: 2,
-        name: 'robot',
-      },
-      {
-        id: 3,
-        name: 'light',
-      },
-    ],
+    items: [],
   },
+  mutations: {
+    items: (state, items) => state.items = items
+  },
+  actions: {
+    async getItems({commit}) {
+      const snapshot = await db.collection('items').get()
+      const items = []
+      snapshot.forEach(doc => {
+        items.push(doc.data())
+      })
+      commit('items', items)
+    },
+  }
 }
