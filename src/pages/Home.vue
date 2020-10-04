@@ -3,7 +3,7 @@
     <Default>
       <v-container>
         <h2>Items</h2>
-        <v-btn @click="getItems" color="primary" class="mt-4">Get!</v-btn>
+        <v-btn @click="bindItems" color="primary" class="mt-4">Get!</v-btn>
         <ul class="mt-4">
           <li v-for="item in items" :key="item.id">{{ item.name }}</li>
         </ul>
@@ -24,7 +24,7 @@ export default {
     }),
   },
   methods: {
-    ...mapActions('items', ['getItems']),
+    ...mapActions('items', ['bindItems']),
   },
 }
 </script>

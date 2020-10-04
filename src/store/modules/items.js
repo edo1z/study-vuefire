@@ -1,21 +1,14 @@
 import {db} from '@/api/firebase'
+import {firestoreAction} from 'vuexfire'
 
 export default {
   namespaced: true,
   state: {
     items: [],
   },
-  mutations: {
-    items: (state, items) => state.items = items
-  },
   actions: {
-    async getItems({commit}) {
-      const snapshot = await db.collection('items').get()
-      const items = []
-      snapshot.forEach(doc => {
-        items.push(doc.data())
-      })
-      commit('items', items)
-    },
+    bindItems: firestoreAction(({bindFirestoreRef}) => {
+      return bindFirestoreRef('items', db.collection('items'))
+    })
   }
 }
