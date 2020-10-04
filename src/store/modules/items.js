@@ -1,5 +1,5 @@
-import {db} from '@/api/firebase'
-import {firestoreAction} from 'vuexfire'
+import { db } from '@/api/firebase'
+import { firestoreAction } from 'vuexfire'
 
 export default {
   namespaced: true,
@@ -7,8 +7,14 @@ export default {
     items: [],
   },
   actions: {
-    bindItems: firestoreAction(({bindFirestoreRef}) => {
-      return bindFirestoreRef('items', db.collection('items'))
-    })
-  }
+    bindItems: firestoreAction(({ bindFirestoreRef, unbindFirestoreRef}, name) => {
+      unbindFirestoreRef('items')
+      const ref = db
+        .collection('items')
+        .orderBy('name')
+        .startAt(name)
+        .endAt(name + '\uf8ff')
+      return bindFirestoreRef('items', ref)
+    }),
+  },
 }
