@@ -2,7 +2,7 @@
   <div>
     <v-app-bar color="primary" dark>
       <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
-      <v-toolbar-title>Study Vuefire</v-toolbar-title>
+      <v-toolbar-title @click="$router.push('/')">Study Vuefire</v-toolbar-title>
       <v-spacer></v-spacer>
       <v-btn icon>
         <v-icon>mdi-heart</v-icon>

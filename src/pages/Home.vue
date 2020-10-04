@@ -3,8 +3,7 @@
     <Default>
       <v-container>
         <h2>Items</h2>
-        <v-text-field label="name" v-model="name">
-        </v-text-field>
+        <v-text-field label="name" v-model="name"/>
         <v-btn @click="search" color="primary" class="mt-4">search</v-btn>
         <ul class="mt-4">
           <li v-for="item in items" :key="item.id">{{ item.name }}</li>
